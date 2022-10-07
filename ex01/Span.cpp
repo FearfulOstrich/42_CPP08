@@ -4,17 +4,25 @@
 	Constructors.
 ==============================================================================*/
 
+Span::Span(void)
+	:_maxN(0)
+	, _array(std::vector<int>())
+{
+	return ;
+}
+
 Span::Span(unsigned int n)
 	: _maxN(n)
+	, _array(std::vector<int>())
 {
-	std::cout << "Span Default Constructor called." << std::endl;
+	if (n == 0)
+		throw (Span::NotEnoughElementsException());
 	return ;
 }
 
 Span::Span(const Span& other)
 	: _maxN(other.getMaxN())
 {
-	std::cout << "Span Copy Constructor called." << std::endl;
 	*this = other;
 	return ;
 }
@@ -25,7 +33,6 @@ Span::Span(const Span& other)
 
 Span::~Span(void)
 {
-	std::cout << "Span Destructor called." << std::endl;
 	return ;
 }
 
@@ -35,9 +42,9 @@ Span::~Span(void)
 
 Span&	Span::operator=(const Span& other)
 {
-	std::cout << "Span assignment operator called." << std::endl;
 	if (this != &other)
 	{
+		_maxN = other.getMaxN();
 		_array = other.getArray();
 	}
 	return (*this);
@@ -45,6 +52,7 @@ Span&	Span::operator=(const Span& other)
 
 std::ostream&	operator<<(std::ostream& os, const Span& obj)
 {
+	(void)obj;
 	os << "something";
 	return (os);
 }
@@ -58,7 +66,7 @@ unsigned int		Span::getMaxN(void) const
 	return (_maxN);
 }
 
-const Array<int>&	Span::getArray(void) const
+const std::vector<int>&	Span::getArray(void) const
 {
 	return (_array);
 }
@@ -75,27 +83,28 @@ void	Span::addNumber(int x)
 {
 	if (_array.size()  == _maxN)
 		throw (Span::SpanFullException());
-	_array.insert(x);
+	_array.push_back(x);
 	return ;
 }
 
-int	shortestSpan(void)
+int	Span::shortestSpan(void) const
 {
-	std::vector<int>	copy = _array;
-	std::vector<int>	diff(copy.size() - 1);
+	std::vector<int>	copy(_array);
+	// std::vector<int>	diff(_array.size() - 1);
 
 	if (_array.size() < 2)
 		throw (Span::NotEnoughElementsException());
 	std::sort(copy.begin(), copy.end());
-	std::adjacent_difference(copy.begin(), copy.end(), diff.begin());
-	return (std::min_element(diff.begin(), diff.end()));
+	std::adjacent_difference(copy.begin(), copy.end(), copy.begin());
+	return (*std::min_element(copy.begin() + 1, copy.end()));
+	// return (*std::min_element(diff.begin(), std::prev(diff.end())));
 }
 
-int	largestSpan(void)
+int	Span::largestSpan(void) const
 {
 	if (_array.size() < 2)
 		throw (Span::NotEnoughElementsException());
-	return (std::max_element(_array.begin(), _array.end()));
+	return (*std::max_element(_array.begin(), _array.end()));
 }
 
 /*==============================================================================

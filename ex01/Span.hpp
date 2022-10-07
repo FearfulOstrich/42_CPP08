@@ -1,8 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/07 14:52:09 by antoine           #+#    #+#             */
+/*   Updated: 2022/10/07 15:49:26 by antoine          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SPAN_HPP
 # define SPAN_HPP
 
 # include <iostream>
 # include <vector>
+# include <algorithm>
+# include <numeric>
 
 class Span
 {
@@ -14,6 +28,7 @@ protected:
 
 public:
 	// Constructors
+	Span(void);
 	Span(unsigned int n);
 	Span(const Span& other);
 
@@ -24,8 +39,8 @@ public:
 	Span&	operator=(const Span& other);
 
 	// Accessors (getters should return by value or const-reference)
-	unsigned int		getMaxN(void) const;
-	const Array<int>&	getArray(void) const;
+	unsigned int			getMaxN(void) const;
+	const std::vector<int>&	getArray(void) const;
 
 	// Member functions
 	void	addNumber(int x);
@@ -33,12 +48,12 @@ public:
 	int		largestSpan(void) const;
 
 	// Exceptions
-	class SpanFullException: std::exception
+	class SpanFullException: public std::exception
 	{
 	public:
 		const char*	what() const throw();
 	};
-	class NotEnoughElementsException: std::exception
+	class NotEnoughElementsException: public std::exception
 	{
 	public:
 		const char*	what() const throw();
