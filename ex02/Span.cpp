@@ -87,24 +87,17 @@ void	Span::addNumber(int x)
 	return ;
 }
 
-void	Span::addRange(unsigned int n)
-{
-	if (_array.size()  >= _maxN + n)
-		throw (Span::SpanFullException());
-	for (unsigned int i = 0 ; i < n; i++)
-		_array.push_back(i);
-	return ;
-}
-
 int	Span::shortestSpan(void) const
 {
 	std::vector<int>	copy(_array);
+	// std::vector<int>	diff(_array.size() - 1);
 
 	if (_array.size() < 2)
 		throw (Span::NotEnoughElementsException());
 	std::sort(copy.begin(), copy.end());
 	std::adjacent_difference(copy.begin(), copy.end(), copy.begin());
 	return (*std::min_element(copy.begin() + 1, copy.end()));
+	// return (*std::min_element(diff.begin(), std::prev(diff.end())));
 }
 
 int	Span::largestSpan(void) const
