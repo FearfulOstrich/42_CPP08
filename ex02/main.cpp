@@ -3,38 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aalleon <aalleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:06:53 by antoine           #+#    #+#             */
-/*   Updated: 2022/10/07 15:48:40 by antoine          ###   ########.fr       */
+/*   Updated: 2022/10/10 16:47:10 by aalleon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Span.hpp"
-#include <ctime>
-#include <stdlib.h>
+#include "MutantStack.hpp"
 
 int main()
 {
-	unsigned int	n;
-	Span			my_span;
+	MutantStack<int>	mstack;
 	
-	std::srand(std::time(NULL));
-	try
+	mstack.push(5);
+	mstack.push(17);
+
+	std::cout << mstack.top() << std::endl;
+
+	mstack.pop();
+
+	std::cout << mstack.size() << std::endl;
+
+	mstack.push(19);
+	mstack.push(24);
+	mstack.push(15);
+	mstack.push(0);
+
+	std::cout << mstack << std::endl << std::endl;
+
+	MutantStack<int>::iterator	it;
+	MutantStack<int>::iterator	ite;
+	
+	it = mstack.begin();
+	ite = mstack.end();
+	// std::cout << &mstack << std::endl;
+	// std::cout << &mstack.getC() << std::endl;
+	// std::cout << &(*it) << std::endl;
+	
+	++it;
+	std::cout << *it << std::endl;
+	--it;
+	std::cout << *it << std::endl << std::endl;
+	while (it != ite)
 	{
-		std::cout << "Enter number of elements in Span: ";
-		std::cin >> n;
-		my_span = Span(n);
-		for (unsigned int i = 0; i < my_span.getMaxN(); i++)
-			my_span.addNumber(std::rand());
-		std::cout << "shortest span: " << my_span.shortestSpan();
-		std::cout << std::endl;
-		std::cout << "largest span: " << my_span.largestSpan();
-		std::cout << std::endl;
+		std::cout << *it << std::endl;
+		it++;
 	}
-	catch (std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+
+	std::stack<int>	s(mstack);
 	return (0);
 }

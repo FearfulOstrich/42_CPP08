@@ -6,7 +6,7 @@
 
 ## Compilation
 
-NAME	=	span
+NAME	=	mstack
 
 CC		=	c++
 
@@ -16,7 +16,7 @@ FLAGS	=	-Wall -Wextra -Werror -std=c++98 -g3
 
 SRCDIR	=
 
-SRCFILE	=	main.cpp Span.cpp
+SRCFILE	=	main.cpp
 
 SRC		=	$(addprefix $(SRCDIR), $(SRCFILE))
 
