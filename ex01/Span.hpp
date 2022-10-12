@@ -6,7 +6,7 @@
 /*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:52:09 by antoine           #+#    #+#             */
-/*   Updated: 2022/10/07 18:18:00 by antoine          ###   ########.fr       */
+/*   Updated: 2022/10/12 08:32:02 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ public:
 	// Member functions
 	void	addNumber(int x);
 	void	addRange(unsigned int n);
+	void	addRange(int start, int end);
 	int		shortestSpan(void) const;
 	int		largestSpan(void) const;
 

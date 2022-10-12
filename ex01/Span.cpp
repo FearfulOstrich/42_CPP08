@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Span.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/12 08:30:54 by antoine           #+#    #+#             */
+/*   Updated: 2022/10/12 08:49:06 by antoine          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Span.hpp"
 
 /*==============================================================================
@@ -52,8 +64,14 @@ Span&	Span::operator=(const Span& other)
 
 std::ostream&	operator<<(std::ostream& os, const Span& obj)
 {
-	(void)obj;
-	os << "something";
+	for (std::vector<int>::const_iterator it = obj.getArray().begin();\
+			it != obj.getArray().end();  it++)
+	{
+		os << *it;
+		if (it != obj.getArray().end())
+			os << " | ";
+	}
+	os << std::endl;
 	return (os);
 }
 
@@ -92,6 +110,15 @@ void	Span::addRange(unsigned int n)
 	if (_array.size()  >= _maxN + n)
 		throw (Span::SpanFullException());
 	for (unsigned int i = 0 ; i < n; i++)
+		_array.push_back(i);
+	return ;
+}
+
+void	Span::addRange(int start, int end)
+{
+	if (_array.size()  >= _maxN + std::abs(end - start))
+		throw (Span::SpanFullException());
+	for (int i = start ; i < std::abs(end - start); i++)
 		_array.push_back(i);
 	return ;
 }
