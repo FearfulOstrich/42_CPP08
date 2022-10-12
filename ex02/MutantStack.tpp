@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.tpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalleon <aalleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 10:30:43 by aalleon           #+#    #+#             */
-/*   Updated: 2022/10/10 17:16:20 by aalleon          ###   ########.fr       */
+/*   Updated: 2022/10/11 18:07:40 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,16 @@ const std::deque<T>&	MutantStack<T>::getC() const
 
 // Begin iterator
 template<typename T>
-typename MutantStack<T>::iterator	MutantStack<T>::begin(void)
+typename MutantStack<T>::iterator	MutantStack<T>::begin(void) const
 {
-	return (&(*this->c.begin()));
+	return ((this->c.begin()));
 }
 
 // End iterator
 template<typename T>
-typename MutantStack<T>::iterator	MutantStack<T>::end(void)
+typename MutantStack<T>::iterator	MutantStack<T>::end(void) const
 {
-	return (&(*this->c.end()));
+	return ((this->c.end()));
 }
 
 /*==============================================================================
@@ -71,6 +71,13 @@ typename MutantStack<T>::iterator	MutantStack<T>::end(void)
 template<typename T>
 MutantStack<T>::iterator::iterator(T* first)
 	: _ptr(first)
+{
+	return ;
+}
+
+template<typename T>
+MutantStack<T>::iterator::iterator(std::iterator<std::input_iterator_tag, T> it)
+	: _ptr(static_cast<T*>(it))
 {
 	return ;
 }
@@ -101,7 +108,8 @@ T*	MutantStack<T>::iterator::getPtr(void) const
 
 // Pre-increment
 template<typename T>
-typename MutantStack<T>::iterator&	MutantStack<T>::iterator::operator++()
+typename MutantStack<T>::iterator&	MutantStack<T>::iterator::\
+operator++()
 {
 	_ptr++;
 	return (*this);
@@ -109,7 +117,8 @@ typename MutantStack<T>::iterator&	MutantStack<T>::iterator::operator++()
 
 // Post-increment
 template<typename T>
-typename MutantStack<T>::iterator	MutantStack<T>::iterator::operator++(int)
+typename MutantStack<T>::iterator	MutantStack<T>::iterator::\
+operator++(int)
 {
 	MutantStack<T>::iterator retval;
 	
@@ -120,7 +129,8 @@ typename MutantStack<T>::iterator	MutantStack<T>::iterator::operator++(int)
 
 // Pre-decrement
 template<typename T>
-typename MutantStack<T>::iterator&	MutantStack<T>::iterator::operator--()
+typename MutantStack<T>::iterator&	MutantStack<T>::iterator::\
+operator--()
 {
 	_ptr--;
 	return (*this);
@@ -128,7 +138,8 @@ typename MutantStack<T>::iterator&	MutantStack<T>::iterator::operator--()
 
 // Post-decrement
 template<typename T>
-typename MutantStack<T>::iterator	MutantStack<T>::iterator::operator--(int)
+typename MutantStack<T>::iterator	MutantStack<T>::iterator::\
+operator--(int)
 {
 	MutantStack<T>::iterator retval;
 	
@@ -139,50 +150,61 @@ typename MutantStack<T>::iterator	MutantStack<T>::iterator::operator--(int)
 
 // equal operator
 template<typename T>
-bool	MutantStack<T>::iterator::operator==(const MutantStack<T>::iterator&\
-																other) const
+bool	MutantStack<T>::iterator::\
+operator==(const MutantStack<T>::iterator& other) const
 {
 	return (_ptr == other.getPtr());
 }
 
 // different operator
 template<typename T>
-bool	MutantStack<T>::iterator::operator!=(const MutantStack<T>::iterator&\
-																other) const
+bool	MutantStack<T>::iterator::\
+operator!=(const MutantStack<T>::iterator& other) const
 {
 	return (_ptr != other.getPtr());
 }
 
 // dereferencement operator
 template<typename T>
-T&	MutantStack<T>::iterator::operator*(void) const
+T&	MutantStack<T>::iterator::\
+operator*(void) const
 {
 	return (*_ptr);
 }
 
 // reference operator
 template<typename T>
-T*	MutantStack<T>::iterator::operator->(void)
+T*	MutantStack<T>::iterator::\
+operator->(void)
 {
 	return (_ptr);
 }
 
+// addition operator
 template<typename T>
-std::ostream&	operator<<(std::ostream& os, const MutantStack<T>& obj)
+typename MutantStack<T>::iterator&	MutantStack<T>::iterator::\
+operator+(unsigned int n)
 {
-	typename MutantStack<T>::iterator	it;
-	typename MutantStack<T>::iterator	ite;
-	
-	it = obj.begin();
-	ite = obj.end();
-	while (it != ite)
-	{
-		os << *it;
-		if (it + 1 != ite)
-			os << " | ";
-		it++;
-	}
-	os << std::endl;
+	return (_ptr + n);
 }
+
+// template<typename T>
+// std::ostream&	operator<<(std::ostream& os, const MutantStack<T>& obj)
+// {
+// 	typename MutantStack<T>::iterator	it;
+// 	typename MutantStack<T>::iterator	ite;
+	
+// 	it = obj.begin();
+// 	ite = obj.end();
+// 	while (it != ite)
+// 	{
+// 		os << *it;
+// 		if (it + 1 != ite)
+// 			os << " | ";
+// 		it++;
+// 	}
+// 	os << std::endl;
+// 	return (os);
+// }
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalleon <aalleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 23:44:58 by antoine           #+#    #+#             */
-/*   Updated: 2022/10/10 17:14:35 by aalleon          ###   ########.fr       */
+/*   Updated: 2022/10/11 18:17:48 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ public:
 
 	public:
 		// Constructor
-		iterator(T* first = NULL);
+		iterator(T* elem = NULL);
+		iterator(std::iterator<std::input_iterator_tag, T> it);
 
 		// Destructor
 		virtual ~iterator();
@@ -58,11 +59,11 @@ public:
 		iterator	operator--(int);
 		bool		operator!=(const iterator& other) const;
 		bool		operator==(const iterator& other) const;
-		
+		iterator&	operator+(unsigned int x);
 	};
 
-	iterator	begin(void);
-	iterator	end(void);
+	iterator	begin(void) const;
+	iterator	end(void) const;
 };
 
 template<typename T>

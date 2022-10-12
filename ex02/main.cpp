@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aalleon <aalleon@student.42.fr>            +#+  +:+       +#+        */
+/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:06:53 by antoine           #+#    #+#             */
-/*   Updated: 2022/10/10 16:47:10 by aalleon          ###   ########.fr       */
+/*   Updated: 2022/10/11 18:07:32 by antoine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main()
 	mstack.push(15);
 	mstack.push(0);
 
-	std::cout << mstack << std::endl << std::endl;
+	// std::cout << mstack << std::endl << std::endl;
 
 	MutantStack<int>::iterator	it;
 	MutantStack<int>::iterator	ite;
