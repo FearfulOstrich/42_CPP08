@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aalleon <aalleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 08:30:54 by antoine           #+#    #+#             */
-/*   Updated: 2022/10/12 08:49:06 by antoine          ###   ########.fr       */
+/*   Updated: 2022/10/12 11:58:12 by aalleon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,12 @@ Span&	Span::operator=(const Span& other)
 std::ostream&	operator<<(std::ostream& os, const Span& obj)
 {
 	for (std::vector<int>::const_iterator it = obj.getArray().begin();\
-			it != obj.getArray().end();  it++)
+		it != obj.getArray().end();  it++)
 	{
 		os << *it;
-		if (it != obj.getArray().end())
+		if (it + 1 != obj.getArray().end())
 			os << " | ";
 	}
-	os << std::endl;
 	return (os);
 }
 
@@ -107,7 +106,7 @@ void	Span::addNumber(int x)
 
 void	Span::addRange(unsigned int n)
 {
-	if (_array.size()  >= _maxN + n)
+	if (_array.size() + n > _maxN)
 		throw (Span::SpanFullException());
 	for (unsigned int i = 0 ; i < n; i++)
 		_array.push_back(i);
@@ -116,10 +115,10 @@ void	Span::addRange(unsigned int n)
 
 void	Span::addRange(int start, int end)
 {
-	if (_array.size()  >= _maxN + std::abs(end - start))
+	if (_array.size() + std::abs(end - start) > _maxN)
 		throw (Span::SpanFullException());
-	for (int i = start ; i < std::abs(end - start); i++)
-		_array.push_back(i);
+	for (int i = 0 ; i < std::abs(end - start); end > start ? i++ : i--)
+		_array.push_back(start + i);
 	return ;
 }
 
