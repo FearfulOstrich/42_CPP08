@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antoine <antoine@student.42.fr>            +#+  +:+       +#+        */
+/*   By: aalleon <aalleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 23:44:58 by antoine           #+#    #+#             */
-/*   Updated: 2022/10/11 18:17:48 by antoine          ###   ########.fr       */
+/*   Updated: 2022/10/12 13:25:16 by aalleon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ template<typename T>
 class MutantStack: public std::stack<T>
 {
 public:
+	// Typedefs
+	typedef typename std::stack<T>::container_type::iterator	iterator;
+	typedef typename std::stack<T>::container_type::const_iterator\
+		const_iterator;
+	
 	// Constructors
 	MutantStack(void);
 	MutantStack(const MutantStack& other);
@@ -28,42 +33,14 @@ public:
 	// Destructors
 	virtual ~MutantStack(void);
 
-	const std::deque<T>&	getC() const;
-	
-	// Iterator
-	class iterator: public std::iterator<std::input_iterator_tag, T>
-	{
-	private:
-		T*	_ptr;
+	// Assignation operator
+	MutantStack<T>&	operator=(const MutantStack<T>& other);
 
-	public:
-		// Constructor
-		iterator(T* elem = NULL);
-		iterator(std::iterator<std::input_iterator_tag, T> it);
-
-		// Destructor
-		virtual ~iterator();
-
-		// assignation operator
-		// iterator&	operator=(const iterator& other);
-
-		// Getter
-		T*	getPtr(void) const;
-		
-		// operators
-		T&			operator*(void) const;
-		T*			operator->(void);
-		iterator&	operator++(void);
-		iterator	operator++(int);
-		iterator&	operator--(void);
-		iterator	operator--(int);
-		bool		operator!=(const iterator& other) const;
-		bool		operator==(const iterator& other) const;
-		iterator&	operator+(unsigned int x);
-	};
-
-	iterator	begin(void) const;
-	iterator	end(void) const;
+	// Member functions
+	iterator		begin(void);
+	iterator		end(void);
+	const_iterator	begin(void) const;
+	const_iterator	end(void) const;
 };
 
 template<typename T>
