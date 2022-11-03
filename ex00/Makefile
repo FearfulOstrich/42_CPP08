@@ -6,7 +6,7 @@
 
 ## Compilation
 
-NAME	=	array
+NAME	=	easyfind
 
 CC		=	c++
 

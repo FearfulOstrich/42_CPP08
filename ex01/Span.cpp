@@ -6,7 +6,7 @@
 /*   By: aalleon <aalleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 08:30:54 by antoine           #+#    #+#             */
-/*   Updated: 2022/10/12 11:58:12 by aalleon          ###   ########.fr       */
+/*   Updated: 2022/11/03 15:58:38 by aalleon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,8 @@ int	Span::largestSpan(void) const
 {
 	if (_array.size() < 2)
 		throw (Span::NotEnoughElementsException());
-	return (*std::max_element(_array.begin(), _array.end()));
+	return (*std::max_element(_array.begin(), _array.end()) -\
+		*std::min_element(_array.begin(), _array.end()));
 }
 
 /*==============================================================================

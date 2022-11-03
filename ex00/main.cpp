@@ -6,7 +6,7 @@
 /*   By: aalleon <aalleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:43:06 by aalleon           #+#    #+#             */
-/*   Updated: 2022/11/03 13:50:25 by aalleon          ###   ########.fr       */
+/*   Updated: 2022/11/03 16:01:53 by aalleon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,7 @@
 #include <vector>
 #include <list>
 #include <deque>
-#include <algorithm>
-
-template< typename T >
-void	easyfind(T& container, int x)
-{
-	typename T::const_iterator	it;
-	
-	it = find(container.begin(), container.end(), x);
-	if (it == container.end())
-		throw (std::exception());
-	std::cout << "found element." << std::endl;
-	return ;
-}
+#include "easyfind.hpp"
 
 int main()
 {
