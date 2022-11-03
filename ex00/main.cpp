@@ -6,7 +6,7 @@
 /*   By: aalleon <aalleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 14:43:06 by aalleon           #+#    #+#             */
-/*   Updated: 2022/10/06 15:56:59 by aalleon          ###   ########.fr       */
+/*   Updated: 2022/11/03 13:50:25 by aalleon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 #include <deque>
 #include <algorithm>
 
-template<typename T>
+template< typename T >
 void	easyfind(T& container, int x)
 {
 	typename T::const_iterator	it;
 	
-	 it = find(container.begin(), container.end(), x);
+	it = find(container.begin(), container.end(), x);
 	if (it == container.end())
 		throw (std::exception());
 	std::cout << "found element." << std::endl;
@@ -31,8 +31,7 @@ void	easyfind(T& container, int x)
 int main()
 {
 	{
-		std::vector<int>	vector;
-		std::vector<int>::const_iterator res;
+		std::vector< int >	vector;
 		
 		vector.push_back(1);
 		vector.push_back(2);
@@ -41,7 +40,7 @@ int main()
 		vector.push_back(5);
 		try
 		{
-			easyfind<std::vector<int> >(vector, 2);
+			easyfind< std::vector< int > >(vector, 2);
 		}
 		catch (std::exception& e)
 		{
@@ -49,7 +48,7 @@ int main()
 		}
 		try
 		{
-			easyfind<std::vector<int> >(vector, 4);
+			easyfind< std::vector< int > >(vector, 4);
 		}
 		catch (std::exception& e)
 		{
@@ -57,15 +56,16 @@ int main()
 		}
 		try
 		{
-			easyfind<std::vector<int> >(vector, 6);
+			easyfind< std::vector< int > >(vector, 6);
 		}
 		catch (std::exception& e)
 		{
 			std::cout << e.what() << std::endl;
 		}
+		std::cout << std::endl;
 	}
 	{
-		std::list<int>	list;
+		std::list< int >	list;
 
 		list.push_back(1);
 		list.push_back(2);
@@ -74,7 +74,7 @@ int main()
 		list.push_back(5);
 		try
 		{
-			easyfind<std::list<int> >(list, 2);
+			easyfind< std::list< int > >(list, 2);
 		}
 		catch (std::exception& e)
 		{
@@ -82,7 +82,7 @@ int main()
 		}
 		try
 		{
-			easyfind<std::list<int> >(list, 4);
+			easyfind< std::list< int > >(list, 4);
 		}
 		catch (std::exception& e)
 		{
@@ -90,15 +90,16 @@ int main()
 		}
 		try
 		{
-			easyfind<std::list<int> >(list, 6);
+			easyfind< std::list< int > >(list, 6);
 		}
 		catch (std::exception& e)
 		{
 			std::cout << e.what() << std::endl;
 		}
+		std::cout << std::endl;
 	}
 	{
-		std::deque<int>	deque;
+		std::deque< int >	deque;
 
 		deque.push_back(1);
 		deque.push_back(2);
@@ -107,7 +108,7 @@ int main()
 		deque.push_back(5);
 		try
 		{
-			easyfind<std::deque<int> >(deque, 2);
+			easyfind< std::deque< int > >(deque, 2);
 		}
 		catch (std::exception& e)
 		{
@@ -115,7 +116,7 @@ int main()
 		}
 		try
 		{
-			easyfind<std::deque<int> >(deque, 4);
+			easyfind< std::deque< int > >(deque, 4);
 		}
 		catch (std::exception& e)
 		{
@@ -123,12 +124,13 @@ int main()
 		}
 		try
 		{
-			easyfind<std::deque<int> >(deque, 6);
+			easyfind< std::deque< int > >(deque, 6);
 		}
 		catch (std::exception& e)
 		{
 			std::cout << e.what() << std::endl;
 		}
+		std::cout << std::endl;
 	}
 	return (0);
 }
