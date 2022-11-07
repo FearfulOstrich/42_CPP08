@@ -6,15 +6,15 @@
 /*   By: aalleon <aalleon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 16:00:26 by aalleon           #+#    #+#             */
-/*   Updated: 2022/11/03 16:01:15 by aalleon          ###   ########.fr       */
+/*   Updated: 2022/11/07 11:11:12 by aalleon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EASYFIND_TPP
 # define EASYFIND_TPP
 
-# include <algorithm>
-# include <iostream>
+#include <algorithm>
+#include <iostream>
 
 template< typename T >
 void	easyfind(T& container, int x)
